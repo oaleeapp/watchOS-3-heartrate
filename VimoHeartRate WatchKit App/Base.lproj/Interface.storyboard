@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="11198.2" systemVersion="15F34" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch38" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="11077"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="11508"/>
     </dependencies>
     <customFonts key="customFonts">
         <array key="Symbol.ttf">
@@ -28,6 +31,12 @@
                                 </label>
                             </items>
                         </group>
+                        <slider width="1" alignment="left" steps="20" minimumImage="stress" maximumImage="Happy" id="EKC-7j-2qk"/>
+                        <button width="1" alignment="left" title="Calibrate" id="Prn-cl-2zn">
+                            <connections>
+                                <action selector="calibrateHeartRate" destination="AgC-eL-Hgc" id="2Ue-ZW-8Jc"/>
+                            </connections>
+                        </button>
                         <button width="1" alignment="left" title="Start" id="JvV-5H-a2z">
                             <connections>
                                 <action selector="startBtnTapped" destination="AgC-eL-Hgc" id="VIN-tV-rkh"/>
@@ -35,10 +44,12 @@
                         </button>
                     </items>
                     <connections>
+                        <outlet property="calibrateButton" destination="Prn-cl-2zn" id="8lF-8m-OFe"/>
                         <outlet property="deviceLabel" destination="Iio-p5-mtX" id="rHL-uK-Bcd"/>
                         <outlet property="heart" destination="Kno-zh-V7M" id="Trd-za-8M9"/>
                         <outlet property="label" destination="hxi-vl-AIJ" id="PRr-AV-DXj"/>
                         <outlet property="startStopButton" destination="JvV-5H-a2z" id="DmP-mE-c0k"/>
+                        <outlet property="stressLevelSliderBar" destination="EKC-7j-2qk" id="DRG-Dw-9h3"/>
                     </connections>
                 </controller>
             </objects>

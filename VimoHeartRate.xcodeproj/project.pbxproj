@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B95523D1E9D339C00B28632 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B95523C1E9D339C00B28632 /* Assets.xcassets */; };
 		AA1110B91D64207B00156B79 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA1110B81D64207B00156B79 /* HealthKit.framework */; };
 		AA192F711B3C8F3F00A2FB8C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA192F701B3C8F3F00A2FB8C /* AppDelegate.swift */; };
 		AA192F731B3C8F3F00A2FB8C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA192F721B3C8F3F00A2FB8C /* ViewController.swift */; };
@@ -18,7 +19,6 @@
 		AA192F911B3C8FF100A2FB8C /* VimoHeartRate WatchKit App Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = AA192F901B3C8FF100A2FB8C /* VimoHeartRate WatchKit App Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		AA192F961B3C8FF100A2FB8C /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA192F951B3C8FF100A2FB8C /* InterfaceController.swift */; };
 		AA192F981B3C8FF100A2FB8C /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA192F971B3C8FF100A2FB8C /* ExtensionDelegate.swift */; };
-		AA192F9A1B3C8FF100A2FB8C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA192F991B3C8FF100A2FB8C /* Assets.xcassets */; };
 		AA192F9E1B3C8FF100A2FB8C /* VimoHeartRate WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = AA192F841B3C8FF100A2FB8C /* VimoHeartRate WatchKit App.app */; };
 		AA3B21FC1D2447D20077F2CE /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA3B21FB1D2447D20077F2CE /* HealthKit.framework */; };
 /* End PBXBuildFile section */
@@ -66,6 +66,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9B95523C1E9D339C00B28632 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA1110B81D64207B00156B79 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		AA192F6D1B3C8F3F00A2FB8C /* VimoHeartRate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VimoHeartRate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA192F701B3C8F3F00A2FB8C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -81,7 +82,6 @@
 		AA192F901B3C8FF100A2FB8C /* VimoHeartRate WatchKit App Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "VimoHeartRate WatchKit App Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA192F951B3C8FF100A2FB8C /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
 		AA192F971B3C8FF100A2FB8C /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
-		AA192F991B3C8FF100A2FB8C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA192F9B1B3C8FF100A2FB8C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA192FA91B3C903200A2FB8C /* VimoHeartRate.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = VimoHeartRate.entitlements; sourceTree = "<group>"; };
 		AA192FAF1B3CA06100A2FB8C /* VimoHeartRate WatchKit App Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "VimoHeartRate WatchKit App Extension.entitlements"; sourceTree = "<group>"; };
@@ -159,7 +159,7 @@
 				AA192FAF1B3CA06100A2FB8C /* VimoHeartRate WatchKit App Extension.entitlements */,
 				AA192F951B3C8FF100A2FB8C /* InterfaceController.swift */,
 				AA192F971B3C8FF100A2FB8C /* ExtensionDelegate.swift */,
-				AA192F991B3C8FF100A2FB8C /* Assets.xcassets */,
+				9B95523C1E9D339C00B28632 /* Assets.xcassets */,
 				AA192F9B1B3C8FF100A2FB8C /* Info.plist */,
 			);
 			path = "VimoHeartRate WatchKit App Extension";
@@ -313,7 +313,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA192F9A1B3C8FF100A2FB8C /* Assets.xcassets in Resources */,
+				9B95523D1E9D339C00B28632 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

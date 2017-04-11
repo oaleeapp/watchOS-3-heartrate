@@ -18,6 +18,8 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate {
     @IBOutlet private weak var heart: WKInterfaceImage!
     @IBOutlet private weak var startStopButton : WKInterfaceButton!
     
+    @IBOutlet var calibrateButton: WKInterfaceButton!
+    @IBOutlet var stressLevelSliderBar: WKInterfaceSlider!
     let healthStore = HKHealthStore()
     
     //State of the app - is the workout activated
@@ -28,6 +30,29 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate {
     let heartRateUnit = HKUnit(from: "count/min")
     //var anchor = HKQueryAnchor(fromValue: Int(HKAnchoredObjectQueryNoAnchor))
     var currenQuery : HKQuery?
+
+    // Calculate 
+
+    // per [count/second]
+    var heartRates: [Double] = []
+    var timeWindow: Int = 40
+
+    var currentChangeSamples: [Double] = [] {
+        didSet {
+            if currentChangeSamples.count > timeWindow {
+                // enable the button
+                calibrateButton.setEnabled(true)
+            }
+        }
+    }
+    var staticChangeSamples: [Double] = []
+    var stressLevel: Double = 0.0 {
+        didSet {
+            self.stressLevelSliderBar.setValue(Float(stressLevel))
+            self.stressLevelSliderBar.setEnabled(true)
+        }
+    }
+    // Calculate
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
@@ -107,6 +132,16 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate {
         }
 
     }
+
+
+    @IBAction func calibrateHeartRate() {
+
+        print(#function)
+        staticChangeSamples = currentChangeSamples
+
+    }
+
+
     
     func startWorkout() {
         
@@ -158,6 +193,14 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate {
         DispatchQueue.main.async {
             guard let sample = heartRateSamples.first else{return}
             let value = sample.quantity.doubleValue(for: self.heartRateUnit)
+            self.heartRates.append(60.0 / sample.quantity.doubleValue(for: self.heartRateUnit))
+            self.currentChangeSamples = self.changeOfAmptitudes(heartRates: self.heartRates)
+
+            if self.staticChangeSamples.count != 0 {
+                self.stressLevel = self.calculateStressLevel(staticChanges: self.staticChangeSamples, currentChanges: self.currentChangeSamples)
+                print(self.stressLevel)
+            }
+
             self.label.setText(String(UInt16(value)))
             
             // retrieve source from sample
@@ -190,3 +233,70 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate {
         }
     }
 }
+
+
+extension InterfaceController{
+
+    func changeOfAmptitudes(heartRates: [Double]) -> [Double] {
+
+        if heartRates.count > timeWindow {
+
+            var diffs: [Double] = []
+            var averageDiffs: [Double] = []
+
+            let startIndex = heartRates.count - timeWindow + 1
+            let endIndex =  heartRates.count
+
+            for n in 1..<timeWindow {
+
+                for i in startIndex..<(endIndex - n) {
+
+                    let diff = abs(heartRates[n + i] - heartRates[i])
+
+                    diffs.append(diff)
+                }
+                let sum = diffs.reduce(0, +)
+                let average = sum / Double(diffs.count)
+                averageDiffs.append(average)
+            }
+
+            return averageDiffs
+
+        } else {
+            return []
+        }
+    }
+
+    func calculateStressLevel(staticChanges: [Double], currentChanges: [Double]) -> Double{
+
+
+        var count: Int = 0
+
+        for i in 0..<(timeWindow - 1) {
+
+            if currentChanges[i] > staticChanges[i] {
+                count += 1
+            }
+
+        }
+
+        let stressLevel = Double(count) / Double(timeWindow + 1)
+
+        return stressLevel
+    }
+    
+}
+
+
+//extension Array where Element: Double {
+//    /// Returns the sum of all elements in the array
+//    var total: Element {
+//        return reduce(0, +)
+//    }
+//}
+//extension Collection where Iterator.Element == Double, Index == Double {
+//    /// Returns the average of all elements in the array
+//    var average: Double {
+//        return isEmpty ? 0 : Double(reduce(0, +)) / Double(endIndex-startIndex)
+//    }
+//}
